@@ -1,0 +1,27 @@
+{
+  "name": "configmllib",
+  "version": "0.0.0",
+  "homepage": "https://github.com/configml/configmllib",
+  "authors": [
+    "aquilax <aquilax@gmail.com>"
+  ],
+  "description": "Library for generation config files based on configml",
+  "main": "configmllib.js",
+  "moduleType": [
+    "amd",
+    "es6",
+    "node"
+  ],
+  "keywords": [
+    "config",
+    "library"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
