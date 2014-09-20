@@ -1,0 +1,20 @@
+{
+	"types": {
+		"set": {
+			"format": "{type} {name}={value}"
+		},
+		"execute": {
+			"fotmat": "{type} {value}"
+		},
+		"switch": {
+			"format": "{name} {value}"
+		},
+		"map": {
+			"format": "{type} {name} {value}"
+		},
+		"let": {
+			"ref": "set"
+		}
+	}
+}
+

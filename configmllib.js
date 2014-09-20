@@ -49,25 +49,7 @@ var config = {
 	]
 };
 
-var template = {
-	types: {
-		set: {
-			f: '{type} {name}={value}'
-		},
-		execute: {
-			f: '{type} {value}'
-		},
-		'switch': {
-			f: '{name} {value}'
-		},
-		map: {
-			f: '{type} {name} {value}'
-		},
-		'let': {
-			ref: 'set'
-		}
-	}
-};
+var template = require('./syntax/vim/syntax.json');
 
 function load(templateJson) {
 	return JSON.parse(templateJson);
@@ -80,7 +62,7 @@ function generate(templateJson, configJson) {
 }
 
 function formatNode(type, node) {
-	var t =  type.f;
+	var t =  type.format;
 	Object.keys(node).forEach(function(key) {
 		t = t.replace('{' + key + '}', node[key]);
 	});
@@ -90,7 +72,7 @@ function formatNode(type, node) {
 function processNode(template, node, nodeType) {
 	var t = template.types[nodeType];
 	if (t) {
-		if (t.f) {
+		if (t.format) {
 			return formatNode(t, node);
 		} else if (t.ref) {
 			return processNode(template, node, t.ref); 
