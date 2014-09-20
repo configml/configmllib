@@ -1,7 +1,11 @@
 {
 	"config": {
 		"eol": "\n",
-		"filename": ".vimrc"
+		"filename": ".vimrc",
+		"comment": {
+			"prefix": "\" ",
+			"suffix": ""
+		}
 	},
 	"types": {
 		"set": {

@@ -1,0 +1,26 @@
+{
+  "name": "configmllib",
+  "version": "0.0.0",
+  "description": "configml library",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/configml/configmllib.git"
+  },
+  "keywords": [
+    "config",
+    "library"
+  ],
+  "author": "Evgeniy (aquilax)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/configml/configmllib/issues"
+  },
+  "devDependencies": {
+    "gulp-jasmine": "~1.0.1",
+    "gulp": "~3.8.8"
+  }
+}

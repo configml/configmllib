@@ -4,13 +4,21 @@
 		"type": "execute",
 		"value": "pathogen#infect()"
 	}, {
-		"type": "set",
-		"name": "t_Co",
-		"value": 256
+		"type": "_comment",
+		"value": "Enable syntax highlight"
 	}, {
 		"type": "switch",
 		"name": "syntax",
 		"value": "on"
+	}, {
+		"type": "_nl"
+	}, {
+		"type": "_comment",
+		"value": "256 Colors"	
+	}, {
+		"type": "set",
+		"name": "t_Co",
+		"value": 256
 	}, {
 		"type": "switch",
 		"name": "colorscheme",

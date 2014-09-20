@@ -1,20 +1,14 @@
 'use strict';
 
-var config = require('./syntax/vim/tests/01/config.json');
-var template = require('./syntax/vim/syntax.json');
-
-
 var templateConfig = {};
 
-function load(templateJson) {
-	return JSON.parse(templateJson);
-}
-
-function generate(templateJson, configJson) {
-	var template = load(templateJson);
-	var config = load(configJson);
+function generate(template, config) {
 	templateConfig = template.config;
 	return processConfig(template, config);
+}
+
+function newLine(text) {
+	return text + templateConfig.eol;
 }
 
 function formatNode(type, node) {
@@ -22,7 +16,23 @@ function formatNode(type, node) {
 	Object.keys(node).forEach(function(key) {
 		result = result.replace('{' + key + '}', node[key]);
 	});
-	return result + templateConfig.eol;
+	return newLine(result);
+}
+
+function processSpecialNode(template, node) {
+	var handlers = {
+		'_nl': function () {
+			return newLine('');
+		},
+		'_comment': function () {
+			var comment = template.config.comment;
+			return newLine(comment.prefix + node.value + comment.suffix);
+		}
+	};
+	if (handlers.hasOwnProperty(node.type)) {
+		return handlers[node.type](template, node);
+	}
+	throw new Error('Special handler "' + node.type + '" is not defined');
 }
 
 function processNode(template, node, nodeType) {
@@ -35,6 +45,8 @@ function processNode(template, node, nodeType) {
 		} else {
 			throw new Error('"' + node.type + '" missing format string');
 		}
+	} else if (nodeType[0] === '_') {
+		return processSpecialNode(template, node);
 	} else {
 		throw new Error('"' + node.type + '" type not found');
 	}
@@ -48,6 +60,5 @@ function processConfig(template, config) {
 	return buffer;
 }
 
-var result = generate(JSON.stringify(template), JSON.stringify(config));
+exports.generate = generate;
 
-console.log(result);
