@@ -1,10 +1,14 @@
 {
+	"config": {
+		"eol": "\n",
+		"filename": ".vimrc"
+	},
 	"types": {
 		"set": {
 			"format": "{type} {name}={value}"
 		},
 		"execute": {
-			"fotmat": "{type} {value}"
+			"format": "{type} {value}"
 		},
 		"switch": {
 			"format": "{name} {value}"

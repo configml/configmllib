@@ -51,6 +51,9 @@ var config = {
 
 var template = require('./syntax/vim/syntax.json');
 
+
+var templateConfig = {};
+
 function load(templateJson) {
 	return JSON.parse(templateJson);
 }
@@ -58,15 +61,16 @@ function load(templateJson) {
 function generate(templateJson, configJson) {
 	var template = load(templateJson);
 	var config = load(configJson);
+	templateConfig = template.config;
 	return processConfig(template, config);
 }
 
 function formatNode(type, node) {
-	var t =  type.format;
+	var result = type.format;
 	Object.keys(node).forEach(function(key) {
-		t = t.replace('{' + key + '}', node[key]);
+		result = result.replace('{' + key + '}', node[key]);
 	});
-	return t+"\n";
+	return result + templateConfig.eol;
 }
 
 function processNode(template, node, nodeType) {
@@ -76,6 +80,8 @@ function processNode(template, node, nodeType) {
 			return formatNode(t, node);
 		} else if (t.ref) {
 			return processNode(template, node, t.ref); 
+		} else {
+			throw new Error('"' + node.type + '" missing format string');
 		}
 	} else {
 		throw new Error('"' + node.type + '" type not found');
@@ -90,5 +96,6 @@ function processConfig(template, config) {
 	return buffer;
 }
 
-var r = generate(JSON.stringify(template), JSON.stringify(config));
-console.log(r);
+var result = generate(JSON.stringify(template), JSON.stringify(config));
+
+console.log(result);
