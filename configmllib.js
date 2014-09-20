@@ -16,7 +16,7 @@ var config = {
 	}, {
 		type: 'switch',
 		name: 'colorscheme',
-		valie: 'haelequin'
+		value: 'haelequin'
 	}, {
 		type: 'set',
 		name: 'tabstop',
@@ -38,10 +38,12 @@ var config = {
 		name: 'g:airline_right_sep',
 		value: '\'\''
 	}, {
-		type: 'autocmd',
+		type: 'switch',
+		name: 'autocmd',
 		value: 'Filetype php setlocal ts=4 sts=4 sw=4 expandtab'
 	}, {
-		type: 'autocmd', 
+		type: 'switch',
+		name: 'autocmd', 
 		value: 'Filetype yaml setlocal ts=2 sts=2 sw=2'
 	}
 	]
@@ -51,6 +53,18 @@ var template = {
 	types: {
 		set: {
 			f: '{type} {name}={value}'
+		},
+		execute: {
+			f: '{type} {value}'
+		},
+		'switch': {
+			f: '{name} {value}'
+		},
+		map: {
+			f: '{type} {name} {value}'
+		},
+		'let': {
+			ref: 'set'
 		}
 	}
 };
@@ -73,12 +87,23 @@ function formatNode(type, node) {
 	return t+"\n";
 }
 
+function processNode(template, node, nodeType) {
+	var t = template.types[nodeType];
+	if (t) {
+		if (t.f) {
+			return formatNode(t, node);
+		} else if (t.ref) {
+			return processNode(template, node, t.ref); 
+		}
+	} else {
+		throw new Error('"' + node.type + '" type not found');
+	}
+}
+
 function processConfig(template, config) {
 	var buffer = '';
 	config.data.forEach(function(node) {
-		if (template.types[node.type]) {
-			buffer += formatNode(template.types[node.type], node);
-		}
+		buffer += processNode(template, node, node.type);
 	});
 	return buffer;
 }
