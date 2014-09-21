@@ -1,0 +1,24 @@
+{
+	"config": {
+		"eol": "\n",
+		"filename": ".vimrc"
+	},
+	"types": {
+		"_nl": {
+			"format": ""
+		},
+		"_comment": {
+			"format": "\" {value}"
+		},
+		"set2": {
+			"format": "{name} {value}"
+		},
+		"set3": {
+			"format": "{name} {key} {value}"
+		},
+		"set3eq": {
+			"format": "{name} {key}={value}"
+		}
+	}
+}
+
