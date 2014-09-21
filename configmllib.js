@@ -1,61 +1,52 @@
 'use strict';
 
-var templateConfig = {};
+var syntaxConfig = {};
+var commentType = '_comment';
 
-function generate(template, config) {
-	templateConfig = template.config;
-	return processConfig(template, config);
+function generate(syntax, config) {
+	syntaxConfig = syntax.config;
+	return processConfig(syntax, config);
 }
 
 function newLine(text) {
-	return text + templateConfig.eol;
+	return text + syntaxConfig.eol;
 }
 
-function formatNode(type, node) {
+function getType(types, typeName) {
+	if (types.hasOwnProperty(typeName)) {
+		return types[typeName];
+	}
+	throw new Error('"' + typeName + '" type not found');
+}
+
+function formatNode(syntax, type, node) {
 	var result = type.format;
+	if (node.hasOwnProperty('comment')){
+		// Add comment before node
+		var comment = formatNode(syntax, getType(syntax.types, commentType), {value: node.comment})
+		result = comment + result;
+	}
 	Object.keys(node).forEach(function(key) {
 		result = result.replace('{' + key + '}', node[key]);
 	});
 	return newLine(result);
 }
 
-function processSpecialNode(template, node) {
-	var handlers = {
-		'_nl': function () {
-			return newLine('');
-		},
-		'_comment': function () {
-			var comment = template.config.comment;
-			return newLine(comment.prefix + node.value + comment.suffix);
-		}
-	};
-	if (handlers.hasOwnProperty(node.type)) {
-		return handlers[node.type](template, node);
-	}
-	throw new Error('Special handler "' + node.type + '" is not defined');
-}
-
-function processNode(template, node, nodeType) {
-	var t = template.types[nodeType];
-	if (t) {
-		if (t.format) {
-			return formatNode(t, node);
-		} else if (t.ref) {
-			return processNode(template, node, t.ref); 
-		} else {
-			throw new Error('"' + node.type + '" missing format string');
-		}
-	} else if (nodeType[0] === '_') {
-		return processSpecialNode(template, node);
+function processNode(syntax, node, nodeType) {
+	var type = getType(syntax.types, nodeType);
+	if (type.hasOwnProperty('format')) {
+		return formatNode(syntax, type, node);
+	} else if (type.ref) {
+		return processNode(syntax, node, type.ref);
 	} else {
-		throw new Error('"' + node.type + '" type not found');
+		throw new Error('"' + node.type + '" missing format string');
 	}
 }
 
-function processConfig(template, config) {
+function processConfig(syntax, config) {
 	var buffer = '';
 	config.data.forEach(function(node) {
-		buffer += processNode(template, node, node.type);
+		buffer += processNode(syntax, node, node.type);
 	});
 	return buffer;
 }

@@ -1,56 +1,44 @@
 {
 	"data": [
 	{
-		"type": "execute",
+		"type": "set2",
+		"name": "execute",
 		"value": "pathogen#infect()"
-	}, {
-		"type": "_comment",
-		"value": "Enable syntax highlight"
-	}, {
-		"type": "switch",
+	},
+	{
+		"comment": "Enable syntax highlight",
+		"type": "set2",
 		"name": "syntax",
 		"value": "on"
-	}, {
+	},
+	{
 		"type": "_nl"
-	}, {
-		"type": "_comment",
-		"value": "256 Colors"	
-	}, {
-		"type": "set",
-		"name": "t_Co",
+	},
+	{
+		"comment": "256 Colors",
+		"type": "set3eq",
+		"name": "set",
+		"key": "t_Co",
 		"value": 256
-	}, {
-		"type": "switch",
+	},
+	{
+		"type": "_nl"
+	},
+	{
+		"comment": "indent by filetype",
+		"type": "set3",
+		"name": "switch",
+		"key": "filetype plugin indent",
+		"value": "on"
+	},
+	{
+		"type": "_nl"
+	},
+	{
+		"comment": "theme",
+		"type": "set2",
 		"name": "colorscheme",
-		"value": "haelequin"
-	}, {
-		"type": "set",
-		"name": "tabstop",
-		"value": 4
-	}, {
-		"type": "set",
-		"name": "langmap",
-		"value": "ъy,оo,пp,дd,гg,ГG,аa,АA,мm"
-	}, {
-		"type": "map",
-		"name": "<F2>",
-		"value": ":NERDTreeToggle<CR>"
-	}, {
-		"type": "let",
-		"name": "g:airline_left_sep",
-		"value": "\"\""
-	}, {
-		"type": "let",
-		"name": "g:airline_right_sep",
-		"value": "\"\""
-	}, {
-		"type": "switch",
-		"name": "autocmd",
-		"value": "Filetype php setlocal ts=4 sts=4 sw=4 expandtab"
-	}, {
-		"type": "switch",
-		"name": "autocmd", 
-		"value": "Filetype yaml setlocal ts=2 sts=2 sw=2"
+		"value": "harlequin"
 	}
 	]
 }

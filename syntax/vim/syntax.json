@@ -1,27 +1,23 @@
 {
 	"config": {
 		"eol": "\n",
-		"filename": ".vimrc",
-		"comment": {
-			"prefix": "\" ",
-			"suffix": ""
-		}
+		"filename": ".vimrc"
 	},
 	"types": {
-		"set": {
-			"format": "{type} {name}={value}"
+		"_nl": {
+			"format": ""
 		},
-		"execute": {
-			"format": "{type} {value}"
+		"_comment": {
+			"format": "\" {value}"
 		},
-		"switch": {
+		"set2": {
 			"format": "{name} {value}"
 		},
-		"map": {
-			"format": "{type} {name} {value}"
+		"set3": {
+			"format": "{name} {key} {value}"
 		},
-		"let": {
-			"ref": "set"
+		"set3eq": {
+			"format": "{name} {key}={value}"
 		}
 	}
 }
