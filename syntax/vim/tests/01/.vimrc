@@ -38,4 +38,3 @@ match OverLength /\%81v.\+/
 
 " set whitespace chars
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
-
