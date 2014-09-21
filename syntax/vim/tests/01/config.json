@@ -27,8 +27,8 @@
 	{
 		"comment": "indent by filetype",
 		"type": "set3",
-		"name": "switch",
-		"key": "filetype plugin indent",
+		"name": "filetype",
+		"key": "plugin indent",
 		"value": "on"
 	},
 	{
@@ -39,6 +39,128 @@
 		"type": "set2",
 		"name": "colorscheme",
 		"value": "harlequin"
+	},
+	{
+		"type": "_nl"
+	},
+	{
+		"disabled": true,
+		"type": "set2",
+		"name": "use",
+		"value": "tabs"
+	},
+	{
+		"disabled": true,
+		"type": "set2",
+		"name": "set",
+		"value": "noexpandtab"
+	}, 
+	{
+		"type": "set3eq",
+		"name": "set",
+		"key": "tabstop",
+		"value": 4
+	},
+	{
+		"disabled": true,
+		"type": "set3eq",
+		"name": "set",
+		"key": "shiftwidth",
+		"value": 4
+	},
+	{
+		"disabled": true,
+		"type": "set2",
+		"name": "set",
+		"value": "autoindent"
+	},
+	{
+		"disabled": true,
+		"type": "set2",
+		"name": "set",
+		"value": "smartindent"
+	},
+	{
+		"type": "_nl"
+	},
+	{
+		"comment": "some cyrillic mappings",
+		"type": "set3eq",
+		"name": "set",
+		"key": "langmap",
+		"value": "ъy,оo,пp,дd,гg,ГG,аa,АA,мm"
+	},
+	{
+		"type": "_nl"
+	},
+	{
+		"comment": "open Nerd Tree with F2",
+		"type": "set3",
+		"name": "map",
+		"key": "<F2>",
+		"value": ":NERDTreeToggle<CR>"
+	},
+	{
+		"type": "_nl"
+	},
+	{
+		"type": "set3eq",
+		"name": "let",
+		"key": "g:airline_left_sep",
+		"value": "''"
+	},
+	{
+		"type": "set3eq",
+		"name": "let",
+		"key": "g:airline_right_sep",
+		"value": "''"
+	},
+	{
+		"type": "set3",
+		"name": "autocmd",
+		"key": "Filetype php",
+		"value": "setlocal ts=4 sts=4 sw=4 expandtab"
+	},
+	{
+		"type": "set3",
+		"name": "autocmd",
+		"key": "Filetype yaml",
+		"value": "setlocal ts=2 sts=2 sw=2"
+	},
+	{
+		"type": "_nl"
+	},
+	{
+		"comment": "enable modeline",
+		"type": "set2",
+		"name": "set",
+		"value": "modeline"
+	},
+	{
+		"type": "_nl"
+	},
+	{
+		"comment": "Highlight col 80+",
+		"type": "set3",
+		"name": "highlight",
+		"key": "OverLength",
+		"value": "ctermbg=red ctermfg=white guibg=#592929"
+	},
+	{
+		"type": "set3",
+		"name": "match",
+		"key": "OverLength",
+		"value": "/\\%81v.\\+/"
+	},
+	{
+		"type": "_nl"
+	}, 
+	{
+		"comment": "set whitespace chars",
+		"type": "set3eq",
+		"name": "set",
+		"key": "listchars",
+		"value": "eol:$,tab:>-,trail:~,extends:>,precedes:<"
 	}
 	]
 }

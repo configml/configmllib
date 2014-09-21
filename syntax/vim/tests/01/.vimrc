@@ -11,15 +11,15 @@ filetype plugin indent on
 " theme
 colorscheme harlequin
 
-"use tabs
-"set noexpandtab
+" use tabs
+" set noexpandtab
 set tabstop=4
-"set shiftwidth=4
-"set autoindent
-"set smartindent
+" set shiftwidth=4
+" set autoindent
+" set smartindent
 
 " some cyrillic mappings
-set langmap =ъy,оo,пp,дd,гg,ГG,аa,АA,мm
+set langmap=ъy,оo,пp,дd,гg,ГG,аa,АA,мm
 
 " open Nerd Tree with F2
 map <F2> :NERDTreeToggle<CR>

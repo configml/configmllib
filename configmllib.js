@@ -19,17 +19,24 @@ function getType(types, typeName) {
 	throw new Error('"' + typeName + '" type not found');
 }
 
+function commentValue(syntax, text) {
+	return formatNode(syntax, getType(syntax.types, commentType), {value: text});
+}
+
 function formatNode(syntax, type, node) {
 	var result = type.format;
+	var comment = '';
 	if (node.hasOwnProperty('comment')){
-		// Add comment before node
-		var comment = formatNode(syntax, getType(syntax.types, commentType), {value: node.comment})
-		result = comment + result;
+		// Get comment before node
+		comment = commentValue(syntax, node.comment)
 	}
 	Object.keys(node).forEach(function(key) {
 		result = result.replace('{' + key + '}', node[key]);
 	});
-	return newLine(result);
+	if (node.hasOwnProperty('disabled')) {
+		return comment + commentValue(syntax, result);
+	}
+	return comment + newLine(result);
 }
 
 function processNode(syntax, node, nodeType) {
