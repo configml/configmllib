@@ -1,0 +1,35 @@
+{
+	"config": {
+		"eol": "\n",
+		"filename": ".editorconfig",
+		"filetype": "ini"
+	},
+	"types": {
+		"_comment": {
+			"format": "# {value}"
+		},
+		"_nl": {
+			"format": ""
+		},
+		"root": {
+			"format": "root = true",
+			"comment": "special property that should be specified at the top of the file outside of any sections. Set to true to stop .editorconfig files search on current file."
+		},
+		"end_of_line": {
+			"format": "{name} = {value}",
+			"type": "enum",
+			"default": "lf",
+			"value": [
+				"lf",
+				"cr",
+				"crlf"
+			],
+			"comment": "set to lf, cr, or crlf to control how line breaks are represented."
+		},
+		"insert_final_newline": {
+			"type": "bool",
+			"default": true,
+			"comment": "set to true ensure file ends with a newline when saving and false to ensure it doesn't."
+		}
+	}
+}

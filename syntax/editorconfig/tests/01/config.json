@@ -1,0 +1,29 @@
+{
+	"data": [
+		{
+			"type": "_comment",
+			"value": "EditorConfig is awesome: http://EditorConfig.org"
+		},
+		{
+			"type": "_nl"
+		},
+		{
+			"type": "root"
+		},
+		{
+			"type": "section",
+			"comment": "Unix-style newlines with a newline ending every file",
+			"value": "*",
+			"data": [
+				{
+					"type": "end_of_line",
+					"value": "lf"
+				}, {
+					"type": "insert_final_newline",
+					"value": "true"
+				}
+			]
+		}
+
+	]
+}
