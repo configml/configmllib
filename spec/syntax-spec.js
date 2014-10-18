@@ -8,13 +8,26 @@ function hash(text) {
 
 describe('Check syntax', function() {
 	it('validates syntax', function() {
-		var test = './syntax/vim/tests/01/.vimrc';
-		var config = require('../syntax/vim/tests/01/config.json');
-		var template = require('../syntax/vim/syntax.json');
+		var testCases = [
+			{
+				config: '../syntax/vim/tests/01/config.json',
+				template: '../syntax/vim/syntax.json',
+				test: './syntax/vim/tests/01/.vimrc'
+			},
+			{
+				config: '../syntax/editorconfig/tests/01/config.json',
+				template: '../syntax/editorconfig/syntax.json',
+				test: './syntax/editorconfig/tests/01/.editorconfig'
+			}
+		];
 
-		var result = generate(template, config);
-		var expected = fs.readFileSync(test, 'utf8');
-		expect(result).toEqual(expected);
+		testCases.forEach(function(testCase) {
+			var config = require(testCase.config);
+			var template = require(testCase.template);
+			var expected = fs.readFileSync(testCase.test, 'utf8');
+			var result = generate(template, config);
+			expect(result).toEqual(expected);
+		});
 	});
 });
 

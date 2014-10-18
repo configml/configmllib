@@ -40,7 +40,11 @@ function formatNode(syntax, type, node) {
 }
 
 function processNode(syntax, node, nodeType) {
-	var type = getType(syntax.types, nodeType);
+	var type;
+	if (typeof syntax.types == 'undefined') {
+		throw new Error('Not types are defined in syntax');
+	}
+	type = getType(syntax.types, nodeType);
 	if (type.hasOwnProperty('format')) {
 		return formatNode(syntax, type, node);
 	} else if (type.ref) {
@@ -52,6 +56,9 @@ function processNode(syntax, node, nodeType) {
 
 function processConfig(syntax, config) {
 	var buffer = '';
+	if (!config.data) {
+		throw new Error ('Invalid config file, missing "data" section')
+	}
 	config.data.forEach(function(node) {
 		buffer += processNode(syntax, node, node.type);
 	});
